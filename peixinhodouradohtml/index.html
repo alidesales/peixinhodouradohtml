@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/style.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8fDEi9t6FwhFfCDGj8FMIH3Ha" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" 
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" 
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"
+     integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8fDEi9t6FwhFfCDGj8FMIH3Ha" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" 
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="reset.css">
     <title>Peixinho Dourado</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
@@ -18,11 +22,11 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
-            <img src="logo-peixinho-sf.png" class="logo" alt="Peixinho Dourado" style="height: 70px; width: auto;">
-            <span class="brand-text">Peixinho Dourado</span>
+             <img src="imagens/logo-peixinho-sf.png" class="logo" alt="Peixinho Dourado" 
+            style="height: 70px; width: auto;">
+             <span class="brand-text">Peixinho Dourado</span>
           </a>
-          
-          <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="nav navbar-nav navbar-right">
               <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fas fa-home"></i> Início</a>
@@ -45,13 +49,13 @@
     <main>
       <div id="photo-slider" class="slider">
         <div class="slide active">
-          <img src="3.jpg" alt="Foto 1">
+          <img src="imagens/3.jpg" alt="Foto 1">
         </div>
         <div class="slide">
-          <img src="2.jpg" alt="Foto 2">
+          <img src="imagens/2.jpg" alt="Foto 2">
         </div>
         <div class="slide">
-          <img src="1.jpg" alt="Foto 3">
+          <img src="imagens/1.jpg" alt="Foto 3">
         </div>
         <button id="prevButton">Anterior</button>
         <button id="nextButton">Próximo</button>
@@ -59,11 +63,13 @@
       <section class="text-columns">
         <div class="column">
           <h2>Sobre Nós</h2>
-          <p>Peixinho Dourado acredita na conexão entre arte e transformação, oferecendo experiências únicas com cerâmica.</p>
+          <p>Peixinho Dourado acredita na conexão entre arte e transformação, oferecendo experiências únicas
+             com cerâmica.</p>
         </div>
         <div class="column">
           <h2>Nossa Visão</h2>
-          <p>Capacitar pessoas e democratizar o acesso à arte cerâmica por meio de oficinas criativas e inspiradoras.</p>
+          <p>Capacitar pessoas e democratizar o acesso à arte cerâmica por meio de oficinas criativas
+             e inspiradoras.</p>
         </div>
       </section>
       <script>
@@ -81,10 +87,25 @@ document.getElementById('nextButton').addEventListener('click', () => {
   currentSlide = (currentSlide + 1) % slides.length;
   slides[currentSlide].classList.add('active');
 });
+let startX;
+document.addEventListener("touchstart", (event) => {
+    startX = event.touches[0].clientX;
+});
+
+document.addEventListener("touchend", (event) => {
+    const endX = event.changedTouches[0].clientX;
+    if (startX - endX > 50) {
+        mudarSlide(1); // Próximo
+    } else if (endX - startX > 50) {
+        mudarSlide(-1); // Anterior
+    }
+});
+
 
 // Inicializa o primeiro slide como ativo
 slides[currentSlide].classList.add('active');
 </script>
+
       </main>
 
     <footer>
